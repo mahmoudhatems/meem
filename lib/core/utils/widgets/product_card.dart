@@ -57,35 +57,39 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  right: 7,
-                  top: 7,
-                  child: CircleAvatar(
-                    radius: 18,
-                    backgroundColor: const Color.fromARGB(255, 231, 231, 231),
-                    child: IconButton(
-                        padding: const EdgeInsets.all(0),
-                        onPressed: () async {
-                          await addFavoritesCubit.changeFavorite(
-                              context, product.id!);
-                        },
-                        icon: BlocBuilder<ChangeFavoritesCubit,
-                            ChangeFavoritesState>(
-                          builder: (context, state) {
-                            return BlocProvider.of<GetProductsCubit>(context)
-                                    .favorites[product.id]!
-                                ? const Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                  )
-                                : const Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.black,
-                                  );
-                          },
-                        )),
-                  ),
-                ),
+                product.oldPrice != null
+                    ? Positioned(
+                        right: 7,
+                        top: 7,
+                        child: CircleAvatar(
+                          radius: 18,
+                          backgroundColor:
+                              const Color.fromARGB(255, 231, 231, 231),
+                          child: IconButton(
+                              padding: const EdgeInsets.all(0),
+                              onPressed: () async {
+                                await addFavoritesCubit.changeFavorite(
+                                    context, product.id!);
+                              },
+                              icon: BlocBuilder<ChangeFavoritesCubit,
+                                  ChangeFavoritesState>(
+                                builder: (context, state) {
+                                  return BlocProvider.of<GetProductsCubit>(
+                                              context)
+                                          .favorites[product.id]!
+                                      ? const Icon(
+                                          Icons.favorite,
+                                          color: Colors.red,
+                                        )
+                                      : const Icon(
+                                          Icons.favorite_border,
+                                          color: Colors.black,
+                                        );
+                                },
+                              )),
+                        ),
+                      )
+                    : SizedBox(),
                 product.oldPrice != null
                     ? product.discount != 0
                         ? Positioned(
