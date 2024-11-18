@@ -83,5 +83,5 @@ To run the Meem app locally, follow these steps:
 
 1. *Clone the repository*:
    ```bash
-   git clone https://github.com/omarelsherbinyy/meem
+   git clone https://github.com/mahmoudhatems/meem
    cd meem
